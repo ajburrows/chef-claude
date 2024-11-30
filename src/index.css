@@ -71,7 +71,7 @@ main {
 ul.ingredients-list {
     margin-bottom: 48px;
     text-align: left;
-    margin-right: 125px;
+    margin-right: 525px;
 
 }
 
@@ -123,6 +123,7 @@ ul.ingredients-list > li {
 .ingredient-list-title{
   font-weight: 500;
   font-size: 1.9rem;
+  margin-right: 400px;
 }
 
 .ingredient-section {
