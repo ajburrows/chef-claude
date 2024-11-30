@@ -1,22 +1,22 @@
 import { useState } from "react"
 
 export default function Main(){
-    const [ingredients, setIngredients]= useState([])
+    const [ingredients, setIngredients] = useState([])
+
+    const ingredients_list_items = ingredients.map(ingredient => (
+        <li key={ingredient}>{ingredient}</li>
+    ))
 
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const form_data = new FormData(event.currentTarget)
+    function addIngredient(form_data) {
         const new_ingredient = form_data.get("ingredient")
-        setIngredients(prev_ingredients_list => {
-            return [...prev_ingredients_list, <li key={new_ingredient}>{new_ingredient}</li>]
-        })
-        console.log(ingredients)
+        setIngredients(prev_ingredients => [...prev_ingredients, new_ingredient])
+        console.log(new_ingredient)
     }
 
     return(
         <main>
-            <form className="add-ingredient-form" onSubmit={handleSubmit}>
+            <form action={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
@@ -26,7 +26,7 @@ export default function Main(){
                 <button>Add ingredient</button>
             </form>
             <ul>
-                {ingredients}
+                {ingredients_list_items}
             </ul>
         </main>
     )
