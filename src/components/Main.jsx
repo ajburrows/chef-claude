@@ -1,8 +1,7 @@
 import { useState } from "react"
 import ClaudeRecipe from "./ClaudeRecipe"
 import IngredientsList from "./IngredientsList"
-
-const api_key = import.meta.env.VITE_CLAUDE_API_KEY;
+import { getRecipeFromChefClaude } from "../ai"
 
 export default function Main(){
     const [ingredients, setIngredients] = useState([])
