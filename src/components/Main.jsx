@@ -1,10 +1,16 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import ClaudeRecipe from "./ClaudeRecipe"
 import IngredientsList from "./IngredientsList"
 import { getRecipeFromMistral } from "../ai"
 
 export default function Main(){
     const [ingredients, setIngredients] = useState([])
+    const [recipeMarkdown, setRecipeMarkdown] = useState("")
+
+    async function getRecipe(){
+        const new_recipe_markdown = await getRecipeFromMistral(ingredients)
+        setRecipeMarkdown(new_recipe_markdown)
+    }
 
     function addIngredient(form_data) {
         const new_ingredient = form_data.get("ingredient")
@@ -12,15 +18,7 @@ export default function Main(){
         console.log(new_ingredient)
     }
 
-    const [recipeMarkdown, setRecipeMarkdown] = useState("")
 
-    function getRecipe(){
-        const new_recipe_markdown = getRecipeFromMistral(ingredients)
-        setRecipeMarkdown(new_recipe_markdown)
-        console.log(new_recipe_markdown)
-
-        
-    }
 
     return(
         <main>
