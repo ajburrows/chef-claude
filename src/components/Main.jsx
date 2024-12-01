@@ -2,14 +2,11 @@ import { useState } from "react"
 import ClaudeRecipe from "./ClaudeRecipe"
 import IngredientsList from "./IngredientsList"
 
+const api_key = import.meta.env.VITE_CLAUDE_API_KEY;
+
 export default function Main(){
     const [ingredients, setIngredients] = useState([])
     const [recipeShown, setRecipeShown] = useState(false)
-
-    const ingredients_list_items = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
-    ))
-
 
     function addIngredient(form_data) {
         const new_ingredient = form_data.get("ingredient")
@@ -35,7 +32,6 @@ export default function Main(){
             <IngredientsList 
                 toggleRecipeShown={toggleRecipeShown}
                 ingredients={ingredients}
-                ingredients_list_items={ingredients_list_items}
             />
             <ClaudeRecipe recipeShown={recipeShown} />
         </main>
